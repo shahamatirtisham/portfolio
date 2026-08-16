@@ -27,9 +27,25 @@ const messages: Record<Place, { title: string; text: string }> = {
   contact: { title: "POST OFFICE", text: "Email, GitHub, and LinkedIn are waiting here when you want to say hello." },
 };
 
+const interactionZones: Array<{ place: Exclude<Place, "welcome">; x: number; y: number; radius: number }> = [
+  { place: "about", x: 16, y: 30, radius: 15 },
+  { place: "projects", x: 84, y: 29, radius: 15 },
+  { place: "achievements", x: 19, y: 84, radius: 16 },
+  { place: "contact", x: 82, y: 84, radius: 16 },
+];
+
+function findNearbyPlace(position: { x: number; y: number }) {
+  return interactionZones.find((zone) => Math.hypot(position.x - zone.x, position.y - zone.y) <= zone.radius)?.place ?? null;
+}
+
 export default function Home() {
   const [place, setPlace] = useState<Place>("welcome");
   const [position, setPosition] = useState({ x: 49, y: 76 });
+  const nearbyPlace = findNearbyPlace(position);
+
+  const enterPlace = useCallback((target: Exclude<Place, "welcome">) => {
+    document.querySelector(`#${target}`)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   const move = useCallback((dx: number, dy: number) => {
     setPosition((current) => ({
@@ -39,7 +55,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (nearbyPlace) setPlace(nearbyPlace);
+  }, [nearbyPlace]);
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter" && nearbyPlace) {
+        event.preventDefault();
+        enterPlace(nearbyPlace);
+        return;
+      }
+
       const keys: Record<string, [number, number]> = {
         ArrowUp: [0, -3], w: [0, -3], W: [0, -3], ArrowDown: [0, 3], s: [0, 3], S: [0, 3],
         ArrowLeft: [-3, 0], a: [-3, 0], A: [-3, 0], ArrowRight: [3, 0], d: [3, 0], D: [3, 0],
@@ -51,7 +77,7 @@ export default function Home() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [move]);
+  }, [enterPlace, move, nearbyPlace]);
 
   return (
     <main className="portfolio-shell">
@@ -68,24 +94,25 @@ export default function Home() {
       </nav>
 
       <section className="world-card" aria-label="Interactive portfolio map">
-        <div className="map-sky"><span>PORTFOLIO TOWN</span><small>Use WASD / arrow keys · select a building</small></div>
+        <div className="map-sky"><span>PORTFOLIO TOWN</span><small>Walk close · press ENTER to visit · or click</small></div>
         <div className="game-map">
           <div className="path path-vertical" /><div className="path path-horizontal" />
           <div className="pond"><i /><i /><i /></div><div className="flower-patch" aria-hidden="true">✦ · ✦ · ✦</div>
-          <button className="building house" onClick={() => setPlace("about")}><span className="roof" /><span className="building-face"><b>HOME</b><i /></span></button>
-          <button className="building lab" onClick={() => setPlace("projects")}><span className="roof" /><span className="building-face"><b>LAB</b><i /></span></button>
-          <button className="building academy" onClick={() => setPlace("achievements")}><span className="roof" /><span className="building-face"><b>ACADEMY</b><i /></span></button>
-          <button className="building post" onClick={() => setPlace("contact")}><span className="roof" /><span className="building-face"><b>POST</b><i /></span></button>
+          <button className={`building house ${nearbyPlace === "about" ? "is-near" : ""}`} onMouseEnter={() => setPlace("about")} onFocus={() => setPlace("about")} onClick={() => setPlace("about")}><span className="roof" /><span className="building-face"><b>HOME</b><i /></span></button>
+          <button className={`building lab ${nearbyPlace === "projects" ? "is-near" : ""}`} onMouseEnter={() => setPlace("projects")} onFocus={() => setPlace("projects")} onClick={() => setPlace("projects")}><span className="roof" /><span className="building-face"><b>LAB</b><i /></span></button>
+          <button className={`building academy ${nearbyPlace === "achievements" ? "is-near" : ""}`} onMouseEnter={() => setPlace("achievements")} onFocus={() => setPlace("achievements")} onClick={() => setPlace("achievements")}><span className="roof" /><span className="building-face"><b>ACADEMY</b><i /></span></button>
+          <button className={`building post ${nearbyPlace === "contact" ? "is-near" : ""}`} onMouseEnter={() => setPlace("contact")} onFocus={() => setPlace("contact")} onClick={() => setPlace("contact")}><span className="roof" /><span className="building-face"><b>POST</b><i /></span></button>
           <div className="tree tree-one" /><div className="tree tree-two" /><div className="tree tree-three" /><div className="tree tree-four" />
           <button className="sign" onClick={() => setPlace("welcome")} aria-label="Read welcome sign">!</button>
-          <div className="player" style={{ left: `${position.x}%`, top: `${position.y}%` }} aria-label="Player character">
+          <div className={`player ${nearbyPlace ? "is-ready" : ""}`} style={{ left: `${position.x}%`, top: `${position.y}%` }} aria-label="Player character">
+            {nearbyPlace && <span className="interaction-prompt">ENTER</span>}
             <span className="player-hair" /><span className="player-face" /><span className="player-body" />
           </div>
         </div>
         <div className="dialogue" role="status" aria-live="polite">
           <div className="portrait" aria-hidden="true"><span>★</span></div>
           <div><h2>{messages[place].title}</h2><p>{messages[place].text}</p>
-            {place !== "welcome" && <button className="enter-button" onClick={() => document.querySelector(`#${place}`)?.scrollIntoView({ behavior: "smooth" })}>ENTER →</button>}
+            {place !== "welcome" && <button className={`enter-button ${nearbyPlace === place ? "is-ready" : ""}`} onClick={() => enterPlace(place)}>{nearbyPlace === place ? "PRESS ENTER →" : "CLICK TO ENTER →"}</button>}
           </div><span className="dialogue-arrow">▼</span>
         </div>
       </section>

@@ -32,6 +32,10 @@ The original prompt also included GitHub Pages guidance, tutorials, and several 
 
 > Okay, make it.
 
+### Prompt 5 — Improving keyboard interaction
+
+> Here WASD works but Enter does not work. Make it like hover, and then Enter. Click works.
+
 ## Important note
 
 Before submission, update this file with any additional prompts used while personalizing, revising, or publishing the website. The portfolio design is an original top-down pixel-world interpretation and does not use Pokémon characters, names, sprites, maps, music, or other copyrighted game assets.
