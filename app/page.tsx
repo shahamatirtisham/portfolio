@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Place = "welcome" | "about" | "projects" | "achievements" | "contact";
 
@@ -41,6 +41,8 @@ function findNearbyPlace(position: { x: number; y: number }) {
 export default function Home() {
   const [place, setPlace] = useState<Place>("welcome");
   const [position, setPosition] = useState({ x: 49, y: 76 });
+  const [mapControlsActive, setMapControlsActive] = useState(true);
+  const worldCardRef = useRef<HTMLElement>(null);
   const nearbyPlace = findNearbyPlace(position);
 
   const enterPlace = useCallback((target: Exclude<Place, "welcome">) => {
@@ -59,7 +61,18 @@ export default function Home() {
   }, [nearbyPlace]);
 
   useEffect(() => {
+    const onPointerDown = (event: PointerEvent) => {
+      setMapControlsActive(Boolean(worldCardRef.current?.contains(event.target as Node)));
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, []);
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (!mapControlsActive) return;
+
       if (event.key === "Enter" && nearbyPlace) {
         event.preventDefault();
         enterPlace(nearbyPlace);
@@ -77,7 +90,7 @@ export default function Home() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [enterPlace, move, nearbyPlace]);
+  }, [enterPlace, mapControlsActive, move, nearbyPlace]);
 
   return (
     <main className="portfolio-shell">
@@ -93,7 +106,7 @@ export default function Home() {
         <button onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>04 CONTACT</button>
       </nav>
 
-      <section className="world-card" aria-label="Interactive portfolio map">
+      <section ref={worldCardRef} className="world-card" aria-label="Interactive portfolio map">
         <div className="map-sky"><span>PORTFOLIO TOWN</span><small>Walk close · press ENTER to visit · or click</small></div>
         <div className="game-map">
           <div className="path path-vertical" /><div className="path path-horizontal" />
