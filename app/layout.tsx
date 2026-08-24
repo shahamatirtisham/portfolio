@@ -7,13 +7,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const image = `${protocol}://${host}/og.png`;
-  const title = "Player One | Engineering Portfolio";
-  const description = "A playful, top-down pixel world built around an engineering student's work and story.";
+  const title = "Md Shahamat Irtisham | CSE Portfolio";
+  const description = "A playful, top-down pixel portfolio featuring Irtisham's projects, achievements, skills, and interests in cybersecurity and machine learning.";
 
   return {
     title,
     description,
-    openGraph: { title, description, images: [{ url: image, width: 1808, height: 871, alt: "Player One engineering portfolio pixel town" }] },
+    openGraph: { title, description, images: [{ url: image, width: 1808, height: 871, alt: "Md Shahamat Irtisham's pixel portfolio town" }] },
     twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }

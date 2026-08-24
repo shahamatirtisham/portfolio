@@ -5,23 +5,44 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type Place = "welcome" | "about" | "projects" | "achievements" | "contact";
 
 const profile = {
-  name: "YOUR NAME",
-  title: "Engineering Student · Builder · Curious Human",
+  name: "Md Shahamat Irtisham",
+  title: "CSE Undergraduate · Builder · Exploring Cybersecurity",
   institution: "Islamic University of Technology",
-  email: "your.email@example.com",
-  github: "https://github.com/your-username",
-  linkedin: "https://linkedin.com/in/your-profile",
+  email: "shahamatirtisham22@gmail.com",
+  github: "https://github.com/shahamatirtisham",
+  linkedin: "https://www.linkedin.com/in/shahamatirtisham/",
 };
 
 const projects = [
-  { id: "01", status: "COMPLETED", title: "Your Flagship Project", description: "Describe the problem, what you built, and the result in two concise sentences.", tools: ["C++", "Problem Solving"] },
-  { id: "02", status: "IN PROGRESS", title: "Your Current Quest", description: "Show what you are learning now and the next milestone you are working toward.", tools: ["Research", "Engineering"] },
-  { id: "03", status: "SIDE QUEST", title: "A Personal Experiment", description: "A smaller build, creative experiment, or community project that reveals your interests.", tools: ["Creativity", "Teamwork"] },
+  {
+    id: "01",
+    status: "COMPLETED",
+    title: "DOTA 2: String Manipulation Challenge",
+    description: "A C program inspired by DOTA 2 heroes that explores string reversal, character counting, searching, replacement, and lexicographic sorting. I designed and implemented the complete project.",
+    tools: ["C", "Strings", "Algorithms"],
+    link: "https://github.com/shahamatirtisham/Dota-2-Character-Manipulation",
+  },
+  {
+    id: "02",
+    status: "COMPLETED",
+    title: "Socket Banking",
+    description: "A client-server banking application built with C++ sockets and database integration to simulate authentication and everyday banking operations. I implemented the logging and login workflows.",
+    tools: ["C++", "Sockets", "DBMS"],
+    link: "https://github.com/shahamatirtisham/Banking-Application",
+  },
+  {
+    id: "03",
+    status: "IN PROGRESS",
+    title: "Promise Beneath the Storm",
+    description: "A top-down roguelike dungeon crawler built for the CSE 4402 Visual Programming Lab, following Mashkam through six corrupted dungeon levels and a multi-phase final battle. I am building the core physics and gameplay systems.",
+    tools: ["Java", "LibGDX", "Ashley ECS", "Box2D"],
+    link: "https://github.com/shahamatirtisham/Promise-Beneath-the-Storm",
+  },
 ];
 
 const messages: Record<Place, { title: string; text: string }> = {
   welcome: { title: "WELCOME, TRAVELLER!", text: "Explore this little world to discover my work, story, and adventures." },
-  about: { title: "HOME BASE", text: "A curious engineering student who enjoys turning ideas into useful things." },
+  about: { title: "HOME BASE", text: "A CSE undergraduate at IUT exploring cybersecurity, machine learning, and the joy of building things." },
   projects: { title: "PROJECT LAB", text: "Experiments, builds, and ongoing quests live inside the workshop." },
   achievements: { title: "ACADEMY", text: "Academic milestones, research, and the lessons collected along the way." },
   contact: { title: "POST OFFICE", text: "Email, GitHub, and LinkedIn are waiting here when you want to say hello." },
@@ -140,39 +161,40 @@ export default function Home() {
           <div className="section-marker"><span>01</span><p>HOME BASE</p></div>
           <div className="story-grid">
             <div className="profile-card">
-              <div className="pixel-avatar" aria-label="Profile photo placeholder"><span>ADD PHOTO</span></div>
+              <div className="pixel-avatar" aria-label="Md Shahamat Irtisham initials"><span>MSI</span></div>
               <div><p className="tiny-label">PLAYER CARD</p><h2>{profile.name}</h2><p>{profile.title}</p><p className="location">⌖ {profile.institution}</p></div>
             </div>
             <div className="copy-card">
               <p className="tiny-label">ORIGIN STORY</p>
-              <h3>Hello! I&apos;m building my path one quest at a time.</h3>
-              <p>I am an engineering student interested in technology, problem-solving, and work that creates a positive impact. This portfolio is a growing record of what I build, learn, and contribute.</p>
-              <div className="stats-row"><span><b>04</b> SEMESTER</span><span><b>∞</b> CURIOSITY</span><span><b>01</b> NEXT QUEST</span></div>
+              <h3>Hello! I&apos;m Irtisham, building my path one quest at a time.</h3>
+              <p>I am a fourth-semester CSE undergraduate at IUT. I first thought machine learning would be my main path, but cybersecurity has unexpectedly become the field I keep returning to. I enjoy building practical projects, learning how systems work, reading, training at the gym, and getting serious about sleep.</p>
+              <div className="stats-row"><span><b>04</b> SEMESTER</span><span><b>03</b> PROJECTS</span><span><b>02</b> FOCUS AREAS</span></div>
             </div>
           </div>
         </section>
 
         <section id="projects" className="story-section">
           <div className="section-marker"><span>02</span><p>PROJECT LAB</p></div>
-          <div className="section-heading"><div><p className="tiny-label">QUEST LOG</p><h2>Things I&apos;ve built</h2></div><p>Selected projects, experiments, and works in progress. Replace these starter entries with your real work.</p></div>
+          <div className="section-heading"><div><p className="tiny-label">QUEST LOG</p><h2>Things I&apos;ve built</h2></div><p>Selected coursework, experiments, and works in progress across systems programming and game development.</p></div>
           <div className="quest-grid">
             {projects.map((project) => <article className="quest-card" key={project.id}>
               <div className="quest-top"><span>QUEST {project.id}</span><b>{project.status}</b></div>
               <div className="project-scene" aria-hidden="true"><span className="scene-sun"/><span className="scene-hill hill-one"/><span className="scene-hill hill-two"/><span className="scene-castle"/></div>
               <h3>{project.title}</h3><p>{project.description}</p>
               <div className="tag-row">{project.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
-              <button className="text-link">VIEW QUEST →</button>
+              <a className="text-link" href={project.link} target="_blank" rel="noreferrer">VIEW REPOSITORY →</a>
             </article>)}
           </div>
         </section>
 
         <section id="achievements" className="story-section academy-section">
           <div className="section-marker"><span>03</span><p>THE ACADEMY</p></div>
-          <div className="section-heading"><div><p className="tiny-label">PROGRESS & MILESTONES</p><h2>Learning inventory</h2></div><p>Academic achievements, research, skills, and certifications can grow here throughout your degree.</p></div>
+          <div className="section-heading"><div><p className="tiny-label">PROGRESS & MILESTONES</p><h2>Learning inventory</h2></div><p>My academic journey, technical toolkit, achievements, and the areas I am currently exploring.</p></div>
           <div className="academy-grid">
-            <article className="timeline-card"><p className="tiny-label">ACADEMIC JOURNEY</p><div className="timeline-item"><b>2024 — PRESENT</b><h3>Undergraduate Engineering</h3><p>{profile.institution} · Fourth semester</p></div><div className="timeline-item muted"><b>NEXT MILESTONE</b><h3>Add your achievement</h3><p>Scholarship, competition, course result, or leadership role.</p></div></article>
-            <article className="inventory-card"><p className="tiny-label">SKILL INVENTORY</p><div className="skill"><span>C++</span><i><b style={{width:"78%"}}/></i></div><div className="skill"><span>Problem Solving</span><i><b style={{width:"72%"}}/></i></div><div className="skill"><span>Teamwork</span><i><b style={{width:"68%"}}/></i></div><div className="skill"><span>Research</span><i><b style={{width:"55%"}}/></i></div><p className="inventory-note">Skill levels are descriptive, not test scores.</p></article>
-            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">RESEARCH CORNER</p><h3>Your research can live here</h3><p>Add a paper, ongoing investigation, poster, or area you want to explore.</p></div></article>
+            <article className="timeline-card"><p className="tiny-label">ACADEMIC JOURNEY & ACHIEVEMENTS</p><div className="timeline-item"><b>2024 — 2028</b><h3>BSc in Computer Science and Engineering</h3><p>{profile.institution} · Fourth semester</p></div><div className="timeline-item"><b>2021</b><h3>General Scholarship — HSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>2018</b><h3>Talent Pool Scholarship — JSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>DHAKA COLLEGE</b><h3>1st Runner-up — Biology Olympiad</h3><p>Intra-college competition.</p></div><div className="timeline-item"><b>2017</b><h3>1st Dan Black Belt — Taekwondo</h3><p>A milestone in discipline, focus, and persistence.</p></div></article>
+            <article className="inventory-card"><p className="tiny-label">SKILL INVENTORY</p><div className="skill"><span>C++</span><i><b style={{width:"78%"}}/></i></div><div className="skill"><span>C</span><i><b style={{width:"75%"}}/></i></div><div className="skill"><span>Mathematics</span><i><b style={{width:"70%"}}/></i></div><div className="skill"><span>AI / ML</span><i><b style={{width:"52%"}}/></i></div><p className="inventory-note">Skill levels are descriptive, not test scores.</p></article>
+            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">CURRENT INTERESTS</p><h3>Cybersecurity & machine learning</h3><p>I am exploring how systems break, how they can be defended, and how intelligent tools can help solve real problems.</p></div></article>
+            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">COMMUNITY & INVOLVEMENT</p><h3>Learning beyond the classroom</h3><p>Sub-executive for Creative at IUT Computer Society, Sub-executive for Research at IUT Robotics Society, and former General Member of Dhaka College Science Club.</p></div></article>
           </div>
         </section>
 
@@ -180,7 +202,7 @@ export default function Home() {
           <div className="section-marker"><span>04</span><p>POST OFFICE</p></div>
           <div className="contact-box">
             <div><p className="tiny-label">SEND A MESSAGE</p><h2>Want to start a quest together?</h2><p>I&apos;m always happy to discuss projects, research, and new opportunities.</p></div>
-            <div className="contact-links"><a href={`mailto:${profile.email}`}>EMAIL <span>{profile.email}</span></a><a href={profile.github}>GITHUB <span>@your-username</span></a><a href={profile.linkedin}>LINKEDIN <span>/in/your-profile</span></a></div>
+            <div className="contact-links"><a href={`mailto:${profile.email}`}>EMAIL <span>{profile.email}</span></a><a href={profile.github} target="_blank" rel="noreferrer">GITHUB <span>@shahamatirtisham</span></a><a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN <span>/in/shahamatirtisham</span></a></div>
           </div>
         </section>
       </div>
