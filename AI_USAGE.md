@@ -36,6 +36,34 @@ The original prompt also included GitHub Pages guidance, tutorials, and several 
 
 > Here WASD works but Enter does not work. Make it like hover, and then Enter. Click works.
 
+### Prompt 6 — Mouse navigation fix
+
+> Clicking the houses such as Home and Lab does not go to the matching section. Fix that.
+
+### Prompt 7 — Local setup and publishing questions
+
+> Is this running in ChatGPT/OpenAI? How do I publish it to GitHub or run it locally in VS Code, and which extensions do I need?
+
+### Prompt 8 — Page scrolling outside the map
+
+> When I scroll below the movable map, the arrow keys still move the player. Make the website scroll normally after I click outside the box.
+
+### Prompt 9 — Mobile and security review
+
+> Is this mobile friendly? How secure is this?
+
+### Prompt 10 — Placeholder checklist
+
+> Tell me which placeholder information I should change now.
+
+### Prompt 11 — Portfolio personalization
+
+> Replace the placeholders using the personal profile, three projects, academic achievements, skills, interests, club involvement, hobbies, GitHub, LinkedIn, and email information I provided.
+
+### Prompt 12 — GitHub Pages conversion
+
+> Do not publish to OpenAI. I am going to publish it using GitHub. Convert it for GitHub Pages.
+
 ## Important note
 
-Before submission, update this file with any additional prompts used while personalizing, revising, or publishing the website. The portfolio design is an original top-down pixel-world interpretation and does not use Pokémon characters, names, sprites, maps, music, or other copyrighted game assets.
+The portfolio design is an original top-down pixel-world interpretation and does not use Pokémon characters, names, sprites, maps, music, or other copyrighted game assets.
