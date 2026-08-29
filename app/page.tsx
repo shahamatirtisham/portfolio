@@ -6,7 +6,7 @@ type Place = "welcome" | "about" | "projects" | "achievements" | "contact";
 
 const profile = {
   name: "Md Shahamat Irtisham",
-  title: "CSE Undergraduate · Builder · Exploring Cybersecurity",
+  title: "CSE Undergraduate · Exploring Cybersecurity",
   institution: "Islamic University of Technology",
   email: "shahamatirtisham22@gmail.com",
   github: "https://github.com/shahamatirtisham",
@@ -191,10 +191,10 @@ export default function Home() {
           <div className="section-marker"><span>03</span><p>THE ACADEMY</p></div>
           <div className="section-heading"><div><p className="tiny-label">PROGRESS & MILESTONES</p><h2>Learning inventory</h2></div><p>My academic journey, technical toolkit, achievements, and the areas I am currently exploring.</p></div>
           <div className="academy-grid">
-            <article className="timeline-card"><p className="tiny-label">ACADEMIC JOURNEY & ACHIEVEMENTS</p><div className="timeline-item"><b>2024 — 2028</b><h3>BSc in Computer Science and Engineering</h3><p>{profile.institution} · Fourth semester</p></div><div className="timeline-item"><b>2021</b><h3>General Scholarship — HSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>2018</b><h3>Talent Pool Scholarship — JSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>DHAKA COLLEGE</b><h3>1st Runner-up — Biology Olympiad</h3><p>Intra-college competition.</p></div><div className="timeline-item"><b>2017</b><h3>1st Dan Black Belt — Taekwondo</h3><p>A milestone in discipline, focus, and persistence.</p></div></article>
+            <article className="timeline-card"><p className="tiny-label">ACADEMIC JOURNEY & ACHIEVEMENTS</p><div className="timeline-item"><b>2024 — 2028</b><h3>BSc in Computer Science and Engineering</h3><p>{profile.institution} · Fourth semester</p></div><div className="timeline-item"><b>2021</b><h3>General Scholarship — HSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>DHAKA COLLEGE</b><h3>1st Runner-up — Biology Olympiad</h3><p>Intra-college competition.</p></div><div className="timeline-item"><b>2018</b><h3>Talent Pool Scholarship — JSC</h3><p>Recognized for academic performance.</p></div><div className="timeline-item"><b>2017</b><h3>1st Dan Black Belt — Taekwondo</h3><p>A milestone in discipline, focus, and persistence.</p></div></article>
             <article className="inventory-card"><p className="tiny-label">SKILL INVENTORY</p><div className="skill"><span>C++</span><i><b style={{width:"78%"}}/></i></div><div className="skill"><span>C</span><i><b style={{width:"75%"}}/></i></div><div className="skill"><span>Mathematics</span><i><b style={{width:"70%"}}/></i></div><div className="skill"><span>AI / ML</span><i><b style={{width:"52%"}}/></i></div><p className="inventory-note">Skill levels are descriptive, not test scores.</p></article>
-            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">CURRENT INTERESTS</p><h3>Cybersecurity & machine learning</h3><p>I am exploring how systems break, how they can be defended, and how intelligent tools can help solve real problems.</p></div></article>
-            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">COMMUNITY & INVOLVEMENT</p><h3>Learning beyond the classroom</h3><p>Sub-executive for Creative at IUT Computer Society, Sub-executive for Research at IUT Robotics Society, and former General Member of Dhaka College Science Club.</p></div></article>
+            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">CURRENT INTERESTS</p><h3>Cybersecurity & machine learning</h3><p>I am just exploring these fields. </p></div></article>
+            <article className="research-card"><div className="book-stack" aria-hidden="true"><i/><i/><i/></div><div><p className="tiny-label">COMMUNITY & INVOLVEMENT</p><h3>Learning beyond the classroom</h3><p>Junior executive for Creative at IUT Computer Society<br></br> Junior executive for Research at IUT Robotics Society<br></br>Former General Member of Dhaka College Science Club.</p></div></article>
           </div>
         </section>
 
